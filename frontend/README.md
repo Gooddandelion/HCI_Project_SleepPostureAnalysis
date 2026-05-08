@@ -1,11 +1,5 @@
 # Frontend 개발 가이드
 
-## 역할
-- Supabase에서 데이터를 직접 읽어서 대시보드 UI를 구성합니다
-- Backend(Kinect 촬영/분류)와 완전히 독립적으로 개발 가능합니다
-
----
-
 ## Supabase에서 읽어야 할 데이터
 
 ### posture_log 테이블
@@ -49,31 +43,4 @@
 - 통증 부위 체크박스 (목 / 어깨 / 허리)
 - 저장 버튼 → Supabase condition_log에 upsert
 
----
 
-## 기술 스택 선택지
-
-| 스택 | 장점 | 단점 |
-|------|------|------|
-| **Streamlit** (Python) | Backend와 같은 Python, 빠른 개발 | 디자인 자유도 낮음 |
-| **React + Supabase JS** | 디자인 자유도 높음 | JS 환경 별도 필요 |
-| **Flutter** | 모바일 앱으로도 빌드 가능 | 학습 곡선 있음 |
-
-> 데모 기간(3~4주)을 고려하면 **Streamlit 추천**
-
----
-
-## Streamlit 빠른 시작
-
-```bash
-pip install streamlit supabase python-dotenv
-streamlit run app.py
-```
-
-Supabase 데이터 읽기 예시:
-```python
-from supabase import create_client
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-data = supabase.table("posture_log").select("*").order("datetime", desc=True).limit(100).execute()
-df = pd.DataFrame(data.data)
-```

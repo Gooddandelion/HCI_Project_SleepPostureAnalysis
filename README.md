@@ -74,19 +74,6 @@ created_at    TIMESTAMPTZ            created_at    TIMESTAMPTZ
 5. backend/notebooks/week2_00_supabase_test.ipynb 실행 → 연결 확인
 6. 나머지 노트북 순서대로 실행
 ```
-
----
-
-## 👥 분업 구조
-
-| 팀원 | 역할 | 담당 파일 |
-|------|------|-----------|
-| A | Kinect 촬영 모듈 | week2_01, week2_02 |
-| B | 자세 분류 모듈 | week2_04, utils/helpers.py |
-| C | 타임랩스 & 데이터 | week2_03, utils/db.py |
-| D | 대시보드 UI | frontend/ |
-| E | 통합 & 발표 | 전체 파이프라인 |
-
 ---
 
 ## ⚠️ 팀원 공통 주의사항
