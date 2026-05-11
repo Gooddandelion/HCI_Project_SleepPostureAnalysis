@@ -19,7 +19,7 @@ TODAY_DIR = FRAMES_DIR / TODAY
 
 # ── 촬영 설정 ──────────────────────────────────────
 INTERVAL_SEC     = 60     # 정기 촬영 간격 (초) | 테스트: 5
-MOTION_THRESHOLD = 20     # 움직임 감지 임계값  | 어두운 환경: 40~50
+MOTION_THRESHOLD = 30     # 움직임 감지 임계값  | 어두운 환경: 40~50
 SHOW_PREVIEW     = True
 
 # ── 타임랩스 설정 ──────────────────────────────────
@@ -71,8 +71,8 @@ JOINT_INDEX = {
 
 # ── Supabase 테이블명 ──────────────────────────────
 # shared/supabase_schema.sql 과 반드시 일치시킬 것
-TABLE_POSTURE_LOG  = "posture_log"    # 자세 분류 결과
-TABLE_CONDITION    = "condition_log"  # 기상 후 컨디션 입력
+TABLE_POSTURE_LOG  = "posture_log"         # 자세 분류 결과
+TABLE_CONDITION    = "morning_conditions"  # 기상 후 컨디션 입력
 
 
 def init_dirs():
