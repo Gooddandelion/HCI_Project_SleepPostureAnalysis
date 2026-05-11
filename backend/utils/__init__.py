@@ -6,7 +6,7 @@ from .helpers import (
 )
 from .db import (
     # Storage
-    upload_image, upload_image_pair, get_image_url,
+    upload_image, upload_image_pair, get_image_url, list_storage_images,
     # posture_log
     insert_posture, fetch_posture_by_date, fetch_posture_latest,
     # condition_log

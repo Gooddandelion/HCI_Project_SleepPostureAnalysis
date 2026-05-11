@@ -117,6 +117,41 @@ def get_image_url(storage_path: str) -> str:
     return supabase.storage.from_(STORAGE_BUCKET).get_public_url(storage_path)
 
 
+def list_storage_images(date_folder: str) -> list[dict]:
+    """
+    Supabase Storage의 날짜 폴더에서 color 이미지 목록 조회
+    date_folder: "YYYYMMDD"
+    반환: [{"name": "...", "url": "https://...", "timestamp": int, "capture_type": str}, ...]
+    """
+    supabase = get_client()
+    try:
+        files = supabase.storage.from_(STORAGE_BUCKET).list(date_folder)
+    except Exception as e:
+        print(f"[Storage] 목록 조회 실패: {e}")
+        return []
+
+    result = []
+    for f in files:
+        name = f.get("name", "")
+        if "_depth" in name or not name.endswith(".png"):
+            continue
+        parts = name.replace(".png", "").split("_")
+        if len(parts) < 2:
+            continue
+        try:
+            ts           = int(parts[0])
+            capture_type = parts[1]
+            url          = supabase.storage.from_(STORAGE_BUCKET).get_public_url(
+                f"{date_folder}/{name}"
+            )
+            result.append({"name": name, "url": url,
+                           "timestamp": ts, "capture_type": capture_type})
+        except ValueError:
+            continue
+
+    return sorted(result, key=lambda x: x["timestamp"])
+
+
 # ── posture_log ────────────────────────────────────
 def insert_posture(timestamp: int, posture: str, angle: float,
                    capture_type: str, image_path: str,
